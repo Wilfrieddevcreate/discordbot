@@ -2,7 +2,7 @@
 import "dotenv/config";
 import { Client, GatewayIntentBits } from "discord.js";
 import { registerWelcomeEvent } from "./events/welcome.js";
-
+import "./database/stats.database.js";
 const token = process.env.DISCORD_TOKEN;
 
 if (!token) {
