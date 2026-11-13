@@ -1,6 +1,7 @@
 
 import "dotenv/config";
 import { Client, GatewayIntentBits } from "discord.js";
+import { registerWelcomeEvent } from "./events/welcome.js";
 
 const token = process.env.DISCORD_TOKEN;
 
@@ -18,5 +19,7 @@ const client = new Client({
 client.once("clientReady", (readyClient) => {
   console.log(`Bot connecté : ${readyClient.user.tag}`);
 });
+
+registerWelcomeEvent(client);
 
 client.login(token);
