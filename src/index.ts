@@ -3,6 +3,7 @@ import "dotenv/config";
 import { Client, GatewayIntentBits } from "discord.js";
 import { registerWelcomeEvent } from "./events/welcome.js";
 import "./database/stats.database.js";
+import { registerMemberStatsEvents } from "./events/memberActivity.js";
 const token = process.env.DISCORD_TOKEN;
 
 if (!token) {
@@ -13,6 +14,7 @@ const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.GuildMessages,
   ],
 });
 
@@ -21,5 +23,6 @@ client.once("clientReady", (readyClient) => {
 });
 
 registerWelcomeEvent(client);
+registerMemberStatsEvents(client);
 
 client.login(token);
